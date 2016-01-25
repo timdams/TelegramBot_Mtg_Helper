@@ -37,7 +37,7 @@ public class Legality
 	public override string ToString ()
 	{
 		if (Legal == null)
-			return Format + ": YES";
+			return Format;
 		return string.Format ("{0}: {1}", Format, Legal);
 	}
 }

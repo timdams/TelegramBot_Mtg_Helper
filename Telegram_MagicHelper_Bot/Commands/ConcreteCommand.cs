@@ -93,8 +93,9 @@ namespace Telegram_MagicHelper_Bot.Commands
 				Card card = results [0];
 				if (cmd.Params.ContainsKey ("t") || card.ImageUrl == null) {
 					res.AppendLine (card.ToString ());
-				} else
+				} else {
 					res.AppendLine (card.ImageUrl);
+				}
 				if (cmd.Params.ContainsKey ("l")) {
 					res.AppendLine ("LEGAL:");
 					foreach (var l in card.Legalities) {
