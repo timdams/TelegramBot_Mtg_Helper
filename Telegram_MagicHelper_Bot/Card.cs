@@ -1,7 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Text;
 
-internal class Ruling
+public class Ruling
 {
 
 	[JsonProperty ("date")]
@@ -11,7 +12,7 @@ internal class Ruling
 	public string Text { get; set; }
 }
 
-internal class ForeignName
+public class ForeignName
 {
 
 	[JsonProperty ("name")]
@@ -24,7 +25,7 @@ internal class ForeignName
 	public int? Multiverseid { get; set; }
 }
 
-internal class Legality
+public class Legality
 {
 
 	[JsonProperty ("format")]
@@ -32,9 +33,16 @@ internal class Legality
 
 	[JsonProperty ("legality")]
 	public string Legal { get; set; }
+
+	public override string ToString ()
+	{
+		if (Legal == null)
+			return Format + ": YES";
+		return string.Format ("{0}: {1}", Format, Legal);
+	}
 }
 
-internal class Card
+public class Card
 {
 
 	[JsonProperty ("name")]
@@ -120,9 +128,25 @@ internal class Card
 
 	[JsonProperty ("watermark")]
 	public string Watermark { get; set; }
+
+	[JsonProperty ("flavor")]
+	public string Flavor { get; set; }
+
+	public override string ToString ()
+	{
+		var str = new StringBuilder ();
+		str.AppendLine (Name + " - " + ManaCost);
+		str.AppendLine (Type);
+		if (Power != null && Toughness != null)
+			str.AppendLine (Power + "/" + Toughness);
+		str.AppendLine (Text);
+		if (Flavor != null)
+			str.AppendLine ("<" + Flavor + ">");
+		return str.ToString ();
+	}
 }
 
-internal class RootObject
+public class RootObject
 {
 
 	[JsonProperty ("cards")]

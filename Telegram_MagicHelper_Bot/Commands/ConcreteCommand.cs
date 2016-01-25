@@ -61,15 +61,18 @@ namespace Telegram_MagicHelper_Bot.Commands
 		public CardCommand (IMagicService serv)
 		{
 			Keyword = "card";
-			Description = "Searches for a card. use -s to specify a set.";
+			Description = "Searches for a card. Options: \n" +
+			"\t-f: force first result\n" +
+			"\t-s: define a set.\n" +
+			"\t-t: get card as text.\n" +
+			"\t-l: get the legality of the card.\n";
 			service = serv;
 		}
 
 		public override string Execute (Command cmd)
 		{
-			if (cmd.Subject == null) {
-				return "Please enter a search term.";
-			}
+			// Get Data:
+
 			var parameters = new Dictionary<string,string> ();
 
 			parameters.Add ("name", cmd.Subject);
@@ -78,7 +81,37 @@ namespace Telegram_MagicHelper_Bot.Commands
 			if (set_param != null)
 				parameters.Add ("set", set_param);
 
-			return service.SearchCard (parameters);
+			// Build Response after getting data:
+
+			var res = new StringBuilder ();
+
+			List<Card> results = service.SearchCard (parameters).Cards;
+
+			if (results.Count == 0)
+				return "Couldn't find that card.";
+			else if (results.Count == 1 || cmd.Params.ContainsKey ("f")) {
+				Card card = results [0];
+				if (cmd.Params.ContainsKey ("t") || card.ImageUrl == null) {
+					res.AppendLine (card.ToString ());
+				} else
+					res.AppendLine (card.ImageUrl);
+				if (cmd.Params.ContainsKey ("l")) {
+					res.AppendLine ("LEGAL:");
+					foreach (var l in card.Legalities) {
+						res.AppendLine (l.ToString ());
+					}
+				}
+					
+			} else {
+				res.AppendFormat ("Found {0} results:\n", results.Count);
+
+				int maxItems = results.Count > 25 ? 25 : results.Count;
+				for (int i = 0; i < maxItems; i++) {
+					res.AppendFormat ("{0}. {1} ({2})\n", i + 1, results [i].Name, results [i].Set);
+				}
+			}
+
+			return res.ToString ();
 		}
 	}
 }

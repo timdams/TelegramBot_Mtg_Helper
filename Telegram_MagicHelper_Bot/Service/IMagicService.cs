@@ -14,7 +14,7 @@ namespace Telegram_MagicHelper_Bot.Service
 		/// </summary>
 		/// <returns>The result of the search as a string, to be printed in Telegram.</returns>
 		/// <param name="queries">A dictionary of parameters you search for in a card. E.g: "Name" - "Nyx-Fleece"</param>
-		string SearchCard (Dictionary<string,string> queries);
+		RootObject SearchCard (Dictionary<string,string> queries);
 	}
 }
 

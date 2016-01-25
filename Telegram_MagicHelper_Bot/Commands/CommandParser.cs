@@ -97,18 +97,6 @@ namespace Telegram_MagicHelper_Bot.Commands
 			return values;
 		}
 
-		/// <summary>
-		/// Extension method that prints a dictionary so it's human readable.
-		/// </summary>
-		/// <returns>The debug string.</returns>
-		/// <param name="dictionary">Dictionary.</param>
-		/// <typeparam name="TKey">The 1st type parameter.</typeparam>
-		/// <typeparam name="TValue">The 2nd type parameter.</typeparam>
-		public static string ToDebugString<TKey, TValue> (this IDictionary<TKey, TValue> dictionary)
-		{
-			return "{" + string.Join (",", dictionary.Select (kv => kv.Key + "=" + kv.Value)) + "}";
-		}
-
 	}
 }
 

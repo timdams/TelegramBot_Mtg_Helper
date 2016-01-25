@@ -59,6 +59,7 @@
     <Compile Include="Commands\CommandParser.cs" />
     <Compile Include="Commands\ConcreteCommand.cs" />
     <Compile Include="Commands\CmdCollection.cs" />
+    <Compile Include="Extensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
