@@ -62,10 +62,11 @@ namespace Telegram_MagicHelper_Bot.Commands
 		{
 			Keyword = "card";
 			Description = "Searches for a card. Options: \n" +
-			"\t-f: force first result\n" +
-			"\t-s: define a set.\n" +
-			"\t-t: get card as text.\n" +
-			"\t-l: get the legality of the card.\n";
+			"-f: force first result\n" +
+			"-s: define a set.\n" +
+			"-t: get card as text.\n" +
+			"-l: get the legality of the card.\n" +
+			"TIP: a comma is an OR, use quotes to do an absolute search.";
 			service = serv;
 		}
 
