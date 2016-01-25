@@ -10,7 +10,7 @@ namespace Telegram_MagicHelper_Bot.Commands
 		/// <summary>
 		/// Regex that matches - or -- followed by a letter or word, optionally followed by spaced params.
 		/// </summary>
-		static readonly Regex ParamSplitter = new Regex (@" -[A-Z](?: *\w+)*", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+		static readonly Regex ParamSplitter = new Regex (@" -[A-Z]+(?: +\w+)*", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 		/// <summary>
 		/// Parse the specified input string to a text command with arguments etc.
