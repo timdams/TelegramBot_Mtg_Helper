@@ -12,12 +12,22 @@ namespace Telegram_MagicHelper_Bot.Service
 	{
 		readonly RestClient client = new RestClient ("http://api.magicthegathering.io/v1/");
 
-		public RootObject SearchCard (Dictionary<string,string> queries)
+		public RootObject SearchCard (IDictionary<string,string> searchParams)
 		{
 			RestRequest req = new RestRequest ("cards", Method.GET);
-			foreach (var q in queries) {
-				req.AddParameter (q.Key, q.Value);
+
+			foreach (var param in searchParams) {
+				if (param.Key.Equals ("subject")) {
+					req.AddParameter ("name", param.Value);
+				} else if (param.Key.Equals ("s") || param.Key.Equals ("set")) {
+					req.AddParameter ("set", param.Value);
+				} else if (param.Key.Equals ("p") || param.Key.Equals ("page")) {
+					req.AddParameter ("page", param.Value);
+				} else if (param.Key.Equals ("c") || param.Key.Equals ("color")) {
+					req.AddParameter ("colors", param.Value);
+				}
 			}
+
 			return client.Execute<RootObject> (req).Data;
 		}
 	}
