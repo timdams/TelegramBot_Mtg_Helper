@@ -35,9 +35,7 @@ namespace Telegram_MagicHelper_Bot.FrontEnds
 				if (update.Message.Type == MessageType.TextMessage && OnNewCommand != null) {
 					string cleanCommand;
 					bool MsgForMe = AmIMentioned (update.Message.Text, out cleanCommand);
-
-					if (update.Message.Chat.Type == ChatType.Private || MsgForMe)
-						OnNewCommand (this, new CommandEventArgs (update.Message.Chat.Id, cleanCommand));
+					OnNewCommand (this, new CommandEventArgs (update.Message.Chat.Id, cleanCommand));
 				}
 				_offset = update.Id + 1;
 			}

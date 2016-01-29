@@ -28,7 +28,7 @@ namespace Telegram_MagicHelper_Bot
 				Console.WriteLine ("Frontend initialized");
 				while (true) {
 					f.Poll ();
-					Thread.Sleep (2000);
+					Thread.Sleep (2000); // Don't overdo requests.
 				}
 			});
 		}
@@ -50,11 +50,12 @@ namespace Telegram_MagicHelper_Bot
 		static void FrontEnd_OnNewCommand (object sender, CommandEventArgs e)
 		{
 			var parsedCmd = CommandParser.Parse (e.Command);
-			Console.WriteLine ("Command: " + parsedCmd);
+			Console.WriteLine ("Cmd " + parsedCmd);
 			var cmdToExecute = ExecutableCommands.Find (c => c.Keyword.Equals (parsedCmd.Keyword, 
 				                   StringComparison.InvariantCultureIgnoreCase));
-			string response = cmdToExecute != null ? cmdToExecute.Execute (parsedCmd) : "I don't know that command.";
-			(sender as IMtgBotFrontEnd).PushResponse (e.Identifier, response);
+			if (cmdToExecute != null) {
+				(sender as IMtgBotFrontEnd).PushResponse (e.Identifier, cmdToExecute.Execute (parsedCmd));
+			}
 		}
 	}
 }
