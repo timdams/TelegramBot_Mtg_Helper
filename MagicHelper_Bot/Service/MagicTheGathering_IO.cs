@@ -3,7 +3,7 @@ using RestSharp;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Telegram_MagicHelper_Bot.Service
+namespace MagicHelper_Bot.Service
 {
 	/// <summary>
 	/// Implementation of IMagicService that uses MagicTheGathering.io as API.
@@ -12,7 +12,7 @@ namespace Telegram_MagicHelper_Bot.Service
 	{
 		readonly RestClient client = new RestClient ("http://api.magicthegathering.io/v1/");
 
-		public RootObject SearchCard (IDictionary<string,string> searchParams)
+		public CardQueryResult SearchCard (IDictionary<string,string> searchParams)
 		{
 			RestRequest req = new RestRequest ("cards", Method.GET);
 
@@ -28,7 +28,7 @@ namespace Telegram_MagicHelper_Bot.Service
 				}
 			}
 
-			return client.Execute<RootObject> (req).Data;
+			return client.Execute<CardQueryResult> (req).Data;
 		}
 	}
 }

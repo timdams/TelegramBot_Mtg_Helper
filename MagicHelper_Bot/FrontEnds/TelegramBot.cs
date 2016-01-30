@@ -1,10 +1,10 @@
 ﻿using System;
-using Telegram_MagicHelper_Bot.Commands;
+using MagicHelper_Bot.Commands;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using System.Threading.Tasks;
 
-namespace Telegram_MagicHelper_Bot.FrontEnds
+namespace MagicHelper_Bot.FrontEnds
 {
 	public class TelegramBot : IMtgBotFrontEnd
 	{

@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7ADA9DCA-27D8-445E-8514-75D6EBA1C9CB}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Telegram_MagicHelper_Bot_Test</RootNamespace>
+    <RootNamespace>MagicHelper_Bot_Test</RootNamespace>
     <AssemblyName>Telegram_MagicHelper_Bot_Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>

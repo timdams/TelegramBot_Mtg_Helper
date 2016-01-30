@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{7A1FB747-7933-4667-A891-7595D460D40D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Telegram_MagicHelper_Bot</RootNamespace>
+    <RootNamespace>MagicHelper_Bot</RootNamespace>
     <AssemblyName>Telegram_MagicHelper_Bot</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -61,6 +61,7 @@
     <Compile Include="Commands\CommandEvents.cs" />
     <Compile Include="Commands\ExecutableCommand.cs" />
     <Compile Include="Commands\CommandCollection.cs" />
+    <Compile Include="Service\APIToken.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

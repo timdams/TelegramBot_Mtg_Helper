@@ -2,7 +2,7 @@
 using RestSharp;
 using System.Collections.Generic;
 
-namespace Telegram_MagicHelper_Bot.Service
+namespace MagicHelper_Bot.Service
 {
 	/// <summary>
 	/// Interface that represents a service that can be used to fetch MTG card data.
@@ -14,7 +14,7 @@ namespace Telegram_MagicHelper_Bot.Service
 		/// </summary>
 		/// <returns>The result of the search as a string, to be printed in Telegram.</returns>
 		/// <param name="searchParams">A dictionary of parameters you search for in a card. E.g: "Name" - "Nyx-Fleece"</param>
-		RootObject SearchCard (IDictionary<string, string> searchParams);
+		CardQueryResult SearchCard (IDictionary<string, string> searchParams);
 	}
 }
 

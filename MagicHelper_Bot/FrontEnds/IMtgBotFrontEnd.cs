@@ -1,8 +1,8 @@
 ﻿using System;
-using Telegram_MagicHelper_Bot.Commands;
+using MagicHelper_Bot.Commands;
 using System.Threading.Tasks;
 
-namespace Telegram_MagicHelper_Bot.FrontEnds
+namespace MagicHelper_Bot.FrontEnds
 {
 	public interface IMtgBotFrontEnd
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Telegram_MagicHelper_Bot.Commands
+namespace MagicHelper_Bot.Commands
 {
 	public delegate void CommandEventHandler (object sender, CommandEventArgs e);
 

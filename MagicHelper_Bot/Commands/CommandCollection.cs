@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Telegram_MagicHelper_Bot.Service;
+using MagicHelper_Bot.Service;
 using TextCommands;
 using System.Text;
 
-namespace Telegram_MagicHelper_Bot.Commands
+namespace MagicHelper_Bot.Commands
 {
 	public class StartCommand : ExecutableCommand
 	{

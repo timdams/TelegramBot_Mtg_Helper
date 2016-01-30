@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Telegram_MagicHelper_Bot
+namespace MagicHelper_Bot
 {
 	public static class Extensions
 	{

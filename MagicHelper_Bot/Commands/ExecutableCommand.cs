@@ -1,6 +1,6 @@
 ﻿using TextCommands;
 
-namespace Telegram_MagicHelper_Bot.Commands
+namespace MagicHelper_Bot.Commands
 {
 	/// <summary>
 	/// Abstract class that represents a command that can be executed.

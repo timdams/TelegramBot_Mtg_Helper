@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Telegram_MagicHelper_Bot.Service;
-using Telegram_MagicHelper_Bot.Commands;
+using MagicHelper_Bot.Service;
+using MagicHelper_Bot.Commands;
 using System.Collections.Generic;
-using Telegram_MagicHelper_Bot.FrontEnds;
+using MagicHelper_Bot.FrontEnds;
 using TextCommands;
 using System.Linq;
 using System.Threading;
 
-namespace Telegram_MagicHelper_Bot
+namespace MagicHelper_Bot
 {
 	class MainClass
 	{
