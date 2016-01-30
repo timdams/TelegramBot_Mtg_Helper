@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram_MagicHelper_Bot", "Telegram_MagicHelper_Bot\Telegram_MagicHelper_Bot.csproj", "{7A1FB747-7933-4667-A891-7595D460D40D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicHelper_Bot", "MagicHelper_Bot\MagicHelper_Bot.csproj", "{7A1FB747-7933-4667-A891-7595D460D40D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextCommands", "TextCommands\TextCommands.csproj", "{2AB048E9-0CD2-42FD-A53E-621B18A20EC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicHelper_Bot_Test", "MagicHelper_Bot_Test\MagicHelper_Bot_Test.csproj", "{7ADA9DCA-27D8-445E-8514-75D6EBA1C9CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextCommands_Test", "TextCommands_Test\TextCommands_Test.csproj", "{8B831FD6-7BA6-43A0-886C-EBB5D08ED2B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,14 @@ Global
 		{7A1FB747-7933-4667-A891-7595D460D40D}.Debug|x86.Build.0 = Debug|x86
 		{7A1FB747-7933-4667-A891-7595D460D40D}.Release|x86.ActiveCfg = Release|x86
 		{7A1FB747-7933-4667-A891-7595D460D40D}.Release|x86.Build.0 = Release|x86
+		{7ADA9DCA-27D8-445E-8514-75D6EBA1C9CB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7ADA9DCA-27D8-445E-8514-75D6EBA1C9CB}.Debug|x86.Build.0 = Debug|Any CPU
+		{7ADA9DCA-27D8-445E-8514-75D6EBA1C9CB}.Release|x86.ActiveCfg = Release|Any CPU
+		{7ADA9DCA-27D8-445E-8514-75D6EBA1C9CB}.Release|x86.Build.0 = Release|Any CPU
+		{8B831FD6-7BA6-43A0-886C-EBB5D08ED2B9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8B831FD6-7BA6-43A0-886C-EBB5D08ED2B9}.Debug|x86.Build.0 = Debug|Any CPU
+		{8B831FD6-7BA6-43A0-886C-EBB5D08ED2B9}.Release|x86.ActiveCfg = Release|Any CPU
+		{8B831FD6-7BA6-43A0-886C-EBB5D08ED2B9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Telegram.Bot;
-using Telegram.Bot.Types;
 using Telegram_MagicHelper_Bot.Service;
 using Telegram_MagicHelper_Bot.Commands;
 using System.Collections.Generic;

@@ -28,7 +28,9 @@ namespace TextCommands
 						result.Params.Add ("subject", arg);
 				} else {
 					param = GetParam (commandParts [i], out arg);
-					if (arg == string.Empty)
+					if (string.IsNullOrEmpty (param))
+						continue;
+					if (string.IsNullOrEmpty (arg))
 						result.Flags.Add (param);
 					else {
 						result.Params.Add (param, arg);
