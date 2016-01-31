@@ -25,6 +25,7 @@ namespace MagicHelper_Bot.FrontEnds
 		async public Task Initialize ()
 		{
 			me = await _bot.GetMe ();
+			Console.WriteLine ("Telegram Frontend Initialized");
 		}
 
 		async public void Poll ()

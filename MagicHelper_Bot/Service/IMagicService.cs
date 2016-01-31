@@ -1,6 +1,7 @@
 ﻿using System;
 using RestSharp;
 using System.Collections.Generic;
+using MagicHelper_Bot.Models;
 
 namespace MagicHelper_Bot.Service
 {

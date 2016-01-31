@@ -17,6 +17,14 @@ namespace MagicHelper_Bot
 		{
 			return "{" + string.Join (",", dictionary.Select (kv => kv.Key + "=" + kv.Value)) + "}";
 		}
+
+		public static long ToUnixTime (this DateTime dateTime)
+		{
+			TimeSpan timeSpan = (dateTime - new DateTime (1970, 1, 1));
+			long timestamp = (long)timeSpan.TotalSeconds;
+
+			return timestamp;
+		}
 	}
 }
 

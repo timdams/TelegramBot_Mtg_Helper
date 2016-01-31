@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using MagicHelper_Bot.Service;
 using TextCommands;
 using System.Text;
+using MagicHelper_Bot.Models;
+using System.Linq;
 
 namespace MagicHelper_Bot.Commands
 {
@@ -101,6 +103,41 @@ namespace MagicHelper_Bot.Commands
 			}
 			return res.ToString ();
 		}
+	}
+
+	public class PriceCommand : ExecutableCommand
+	{
+		readonly IProductService service;
+
+		public PriceCommand (IProductService serv)
+		{
+			service = serv;
+
+			Keyword = "price";
+			Description = @"Searches for the price of a product on MagicCardMarket.eu";
+		}
+
+		public override string Execute (TextCommand cmd)
+		{
+			var res = new StringBuilder ();
+
+			List<Product> results = service.SearchProduct (cmd.Params);
+
+			if (results.Count == 0)
+				return "Couldn't find that card.";
+			else if (results.Count == 1) {
+				Product product = results [0]; 
+				var price = product.Pricing;
+				res.AppendLine (price.ToString ());
+			} else {
+				for (int i = 0; i < results.Count; i++) {
+					res.AppendFormat ("{0}.{1} ({2})\n", i + 1, results [i].Name, results [i].Category);
+				}
+			}
+
+			return res.ToString ();
+		}
+
 	}
 }
 

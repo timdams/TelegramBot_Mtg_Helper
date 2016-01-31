@@ -2,6 +2,7 @@
 using RestSharp;
 using System.Linq;
 using System.Collections.Generic;
+using MagicHelper_Bot.Models;
 
 namespace MagicHelper_Bot.Service
 {
@@ -10,7 +11,7 @@ namespace MagicHelper_Bot.Service
 	/// </summary>
 	public class MagicTheGathering_IO : IMagicService
 	{
-		readonly RestClient client = new RestClient ("http://api.magicthegathering.io/v1/");
+		readonly RestClient client = new RestClient ("http://api.magicthegathering.io/v1");
 
 		public CardQueryResult SearchCard (IDictionary<string,string> searchParams)
 		{
@@ -30,6 +31,11 @@ namespace MagicHelper_Bot.Service
 
 			return client.Execute<CardQueryResult> (req).Data;
 		}
+	}
+
+	public class CardQueryResult
+	{
+		public List<Card> Cards { get; set; }
 	}
 }
 

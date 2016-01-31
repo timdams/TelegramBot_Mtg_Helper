@@ -7,12 +7,14 @@ using MagicHelper_Bot.FrontEnds;
 using TextCommands;
 using System.Linq;
 using System.Threading;
+using MagicHelper_Bot.Service.CardMarket_eu;
 
 namespace MagicHelper_Bot
 {
 	class MainClass
 	{
 		static IMagicService CardService;
+		static IProductService ProductService;
 		static List<ExecutableCommand> ExecutableCommands;
 		static List<IMtgBotFrontEnd> FrontEnds;
 
@@ -23,7 +25,6 @@ namespace MagicHelper_Bot
 			Parallel.ForEach (FrontEnds, f => {
 				f.Initialize ().Wait ();
 				f.OnNewCommand += FrontEnd_OnNewCommand;
-				Console.WriteLine ("Frontend initialized");
 				while (true) {
 					f.Poll ();
 					Thread.Sleep (2000); // Don't overdo requests.
@@ -34,9 +35,12 @@ namespace MagicHelper_Bot
 		static void Initialize ()
 		{
 			CardService = new MagicTheGathering_IO ();
+			ProductService = new MagicCardMarket_EU_v1_1 ();
+
 			ExecutableCommands = new List<ExecutableCommand> () {
 				new StartCommand (),
 				new CardCommand (CardService),
+				new PriceCommand (ProductService),
 				new HelpCommand ()
 			};
 			(ExecutableCommands.First (c => c is HelpCommand) as HelpCommand).BuildHelp (ExecutableCommands);
