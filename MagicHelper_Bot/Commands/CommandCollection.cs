@@ -114,7 +114,11 @@ namespace MagicHelper_Bot.Commands
 			service = serv;
 
 			Keyword = "price";
-			Description = @"Searches for the price of a product on MagicCardMarket.eu";
+			Description = @"Searches for the price of a product on MagicCardMarket.eu
+				-s, -single: get singles.
+				-b, -booster: get boosters.
+				-d, -display: get display boxes (boosterbox).
+			TIP: a comma is an OR, use quotes to do an absolute search.";
 		}
 
 		public override string Execute (TextCommand cmd)
@@ -122,16 +126,34 @@ namespace MagicHelper_Bot.Commands
 			var res = new StringBuilder ();
 
 			List<Product> results = service.SearchProduct (cmd.Params);
+			List<Product> filteredResults = new List<Product> ();
+			List<Product> activeList = results;
 
-			if (results.Count == 0)
+			if (cmd.Flags.Contains ("s") || cmd.Flags.Contains ("single")) {
+				filteredResults.AddRange (results.Where (p => p.Category.Equals ("Magic Single")));
+				activeList = filteredResults;
+			}
+			if (cmd.Flags.Contains ("b") || cmd.Flags.Contains ("booster")) {
+				filteredResults.AddRange (results.Where (p => (p.Category.Equals ("Magic Booster"))));
+				activeList = filteredResults;
+			}
+			if (cmd.Flags.Contains ("d") || cmd.Flags.Contains ("display")) {
+				filteredResults.AddRange (results.Where (p => p.Category.Equals ("Magic Display")));
+				activeList = filteredResults;
+			}
+					
+			if (activeList.Count == 0) {
 				return "Couldn't find that card.";
-			else if (results.Count == 1) {
-				Product product = results [0]; 
-				var price = product.Pricing;
-				res.AppendLine (price.ToString ());
+			} else if (activeList.Count < 10) {
+				foreach (var product in activeList) {
+					res.AppendLine (product.Name + ":");
+					res.AppendLine (product.Link);
+					res.AppendLine (product.Pricing.ToString ());
+				}
 			} else {
-				for (int i = 0; i < results.Count; i++) {
-					res.AppendFormat ("{0}.{1} ({2})\n", i + 1, results [i].Name, results [i].Category);
+				res.AppendLine ("Found " + activeList.Count + " results:");
+				for (int i = 0; i < activeList.Count; i++) {
+					res.AppendFormat ("{0}. {1}\n", i + 1, results [i].Name);
 				}
 			}
 

@@ -101,17 +101,12 @@ namespace MagicHelper_Bot.Service.DeserializerClasses
 
 		public string Rarity { get; set; }
 
-		public override string ToString ()
-		{
-			return string.Format ("[Product: IdProduct={0}, Name={1}, Website={2}, Category={3}, PriceGuide={4}, Expansion={5}]", IdProduct, Name, Website, Category, PriceGuide, Expansion);
-		}
-
 		public static explicit operator MagicHelper_Bot.Models.Product (Product p)  // explicit byte to digit conversion operator
 		{
 			MagicHelper_Bot.Models.Product result = new MagicHelper_Bot.Models.Product () {
 
 				ID = p.IdProduct,
-				Link = p.Website,
+				Link = "https://magiccardmarket.eu" + p.Website,
 				Name = p.Name.English.ProductName,
 				Set = new MagicHelper_Bot.Models.Set (){ Name = p.Expansion },
 				Pricing = (MagicHelper_Bot.Models.PriceData)p.PriceGuide,

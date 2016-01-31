@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MagicHelper_Bot.Models
 {
@@ -34,14 +35,19 @@ namespace MagicHelper_Bot.Models
 
 		public override string ToString ()
 		{
-			return String.Format (
-				@"Sold Avg: €{0}
-				Current Avg: €{1}
-				Low: €{2}
-				Low (HQ): €{3}
-				Low (Foil): €{4}
-				Trend: €{5}",
-				Sold_Avg, Avg, Low, Low_HighQuality, Low_Foil, Trend);
+			var sb = new StringBuilder ();
+			sb.AppendLine ("   Sold Avg: €" + Sold_Avg);
+
+			if (Low > 0d)
+				sb.AppendLine ("   Low: €" + Low);
+			if (Low_HighQuality > 0d)
+				sb.AppendLine ("   Low (HQ): €" + Low_HighQuality);
+			if (Low_Foil > 0d)
+				sb.AppendLine ("   Low (Foil): €" + Low_Foil);
+			if (Avg > 0d)
+				sb.AppendLine ("   Avg: €" + Avg);
+
+			return sb.ToString ();
 		}
 	}
 }
