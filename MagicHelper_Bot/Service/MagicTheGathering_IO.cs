@@ -1,6 +1,4 @@
-﻿using System;
-using RestSharp;
-using System.Linq;
+﻿using RestSharp;
 using System.Collections.Generic;
 using MagicHelper_Bot.Models;
 
@@ -13,9 +11,9 @@ namespace MagicHelper_Bot.Service
 	{
 		readonly RestClient client = new RestClient ("http://api.magicthegathering.io/v1");
 
-		public CardQueryResult SearchCard (IDictionary<string,string> searchParams)
+		public List<Card> SearchCard (IDictionary<string,string> searchParams)
 		{
-			RestRequest req = new RestRequest ("cards", Method.GET);
+			var req = new RestRequest ("cards", Method.GET);
 
 			foreach (var param in searchParams) {
 				if (param.Key.Equals ("subject")) {
@@ -29,7 +27,7 @@ namespace MagicHelper_Bot.Service
 				}
 			}
 
-			return client.Execute<CardQueryResult> (req).Data;
+			return client.Execute<CardQueryResult> (req).Data.Cards;
 		}
 	}
 

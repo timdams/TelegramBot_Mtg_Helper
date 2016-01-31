@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace MagicHelper_Bot.Service.CardMarket_eu
+namespace MagicHelper_Bot.Service.Helpers
 {
 	/// <summary>
 	/// Class encapsulates tokens and secret to create OAuth signatures and return Authorization headers for web requests.
@@ -32,13 +32,13 @@ namespace MagicHelper_Bot.Service.CardMarket_eu
 		{
 			String nonce = Guid.NewGuid ().ToString ("n");
 			String timestamp = (DateTime.UtcNow.Subtract (new DateTime (1970, 1, 1))).TotalSeconds.ToString ();
-			this.headerParams = new Dictionary<String, String> ();
-			this.headerParams.Add ("oauth_consumer_key", this.appToken);
-			this.headerParams.Add ("oauth_token", this.accessToken);
-			this.headerParams.Add ("oauth_nonce", nonce);
-			this.headerParams.Add ("oauth_timestamp", timestamp);
-			this.headerParams.Add ("oauth_signature_method", this.signatureMethod);
-			this.headerParams.Add ("oauth_version", this.version);
+			headerParams = new Dictionary<String, String> ();
+			headerParams.Add ("oauth_consumer_key", appToken);
+			headerParams.Add ("oauth_token", accessToken);
+			headerParams.Add ("oauth_nonce", nonce);
+			headerParams.Add ("oauth_timestamp", timestamp);
+			headerParams.Add ("oauth_signature_method", signatureMethod);
+			headerParams.Add ("oauth_version", version);
 		}
 
 		/// <summary>
@@ -50,7 +50,7 @@ namespace MagicHelper_Bot.Service.CardMarket_eu
 		public String getAuthorizationHeader (String method, String url)
 		{
 			// Add the realm parameter to the header params
-			this.headerParams.Add ("realm", url);
+			headerParams.Add ("realm", url);
 
 			// Start composing the base string from the method and request URI
 			String baseString = method.ToUpper ()
@@ -59,15 +59,15 @@ namespace MagicHelper_Bot.Service.CardMarket_eu
 			                    + "&";
 
 			// Gather, encode, and sort the base string parameters
-			SortedDictionary<String, String> encodedParams = new SortedDictionary<String, String> ();
-			foreach (KeyValuePair<String, String> parameter in this.headerParams) {
-				if (false == parameter.Key.Equals ("realm")) {
+			var encodedParams = new SortedDictionary<String, String> ();
+			foreach (KeyValuePair<String, String> parameter in headerParams) {
+				if (!parameter.Key.Equals ("realm")) {
 					encodedParams.Add (Uri.EscapeDataString (parameter.Key), Uri.EscapeDataString (parameter.Value));
 				}
 			}
 
 			// Expand the base string by the encoded parameter=value pairs
-			List<String> paramStrings = new List<String> ();
+			var paramStrings = new List<String> ();
 			foreach (KeyValuePair<String, String> parameter in encodedParams) {
 				paramStrings.Add (parameter.Key + "=" + parameter.Value);
 			}
@@ -75,18 +75,18 @@ namespace MagicHelper_Bot.Service.CardMarket_eu
 			baseString += paramString;
 
 			// Create the OAuth signature
-			String signatureKey = Uri.EscapeDataString (this.appSecret) + "&" + Uri.EscapeDataString (this.accessSecret);
-			HMAC hasher = HMACSHA1.Create ();
+			String signatureKey = Uri.EscapeDataString (appSecret) + "&" + Uri.EscapeDataString (accessSecret);
+			HMAC hasher = HMAC.Create ();
 			hasher.Key = Encoding.UTF8.GetBytes (signatureKey);
 			Byte[] rawSignature = hasher.ComputeHash (Encoding.UTF8.GetBytes (baseString));
 			String oAuthSignature = Convert.ToBase64String (rawSignature);
 
 			// Include the OAuth signature parameter in the header parameters array
-			this.headerParams.Add ("oauth_signature", oAuthSignature);
+			headerParams.Add ("oauth_signature", oAuthSignature);
 
 			// Construct the header string
-			List<String> headerParamStrings = new List<String> ();
-			foreach (KeyValuePair<String, String> parameter in this.headerParams) {
+			var headerParamStrings = new List<String> ();
+			foreach (KeyValuePair<String, String> parameter in headerParams) {
 				headerParamStrings.Add (parameter.Key + "=\"" + parameter.Value + "\"");
 			}
 			String authHeader = "OAuth " + String.Join<String> (", ", headerParamStrings);

@@ -1,12 +1,10 @@
 ﻿using RestSharp;
 using System.Collections.Generic;
-using System.Linq;
-using RestSharp.Authenticators;
 using MagicHelper_Bot.Service.DeserializerClasses;
-using System;
+using MagicHelper_Bot.Service.Helpers;
 
 
-namespace MagicHelper_Bot.Service.CardMarket_eu
+namespace MagicHelper_Bot.Service
 {
 	public class MagicCardMarket_EU_v1_1 : IProductService
 	{
@@ -17,7 +15,7 @@ namespace MagicHelper_Bot.Service.CardMarket_eu
 
 		public List<MagicHelper_Bot.Models.Product> SearchProduct (IDictionary<string,string> searchParams)
 		{			
-			RestRequest req = new RestRequest ("products/{name}/{idGame}/{idLanguage}/{isExact}", Method.GET);
+			var req = new RestRequest ("products/{name}/{idGame}/{idLanguage}/{isExact}", Method.GET);
 
 			foreach (var param in searchParams) {
 				if (param.Key.Equals ("subject")) {
@@ -36,7 +34,7 @@ namespace MagicHelper_Bot.Service.CardMarket_eu
 				System.Console.WriteLine ("Mcm request failed: " + result.StatusCode + ": " + result.StatusDescription);
 			}
 
-			List<MagicHelper_Bot.Models.Product> casted = new List<MagicHelper_Bot.Models.Product> ();
+			var casted = new List<MagicHelper_Bot.Models.Product> ();
 			foreach (Product product in result.Data.Products) {
 				casted.Add ((MagicHelper_Bot.Models.Product)product);
 			}

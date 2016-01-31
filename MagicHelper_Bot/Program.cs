@@ -7,7 +7,6 @@ using MagicHelper_Bot.FrontEnds;
 using TextCommands;
 using System.Linq;
 using System.Threading;
-using MagicHelper_Bot.Service.CardMarket_eu;
 
 namespace MagicHelper_Bot
 {
@@ -37,14 +36,15 @@ namespace MagicHelper_Bot
 			CardService = new MagicTheGathering_IO ();
 			ProductService = new MagicCardMarket_EU_v1_1 ();
 
-			ExecutableCommands = new List<ExecutableCommand> () {
+			ExecutableCommands = new List<ExecutableCommand> {
 				new StartCommand (),
+				new HelpCommand (),
 				new CardCommand (CardService),
 				new PriceCommand (ProductService),
-				new HelpCommand ()
 			};
 			(ExecutableCommands.First (c => c is HelpCommand) as HelpCommand).BuildHelp (ExecutableCommands);
-			FrontEnds = new List<IMtgBotFrontEnd> () {
+
+			FrontEnds = new List<IMtgBotFrontEnd> {
 				new TelegramBot ()
 			};
 		}

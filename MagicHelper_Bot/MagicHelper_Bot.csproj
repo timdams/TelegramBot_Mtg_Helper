@@ -51,7 +51,6 @@
     <Compile Include="FrontEnds\APIToken.cs" />
     <Compile Include="Commands\CommandEvents.cs" />
     <Compile Include="Commands\ExecutableCommand.cs" />
-    <Compile Include="Commands\CommandCollection.cs" />
     <Compile Include="Service\APIToken.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Service\IProductService.cs" />
@@ -61,6 +60,14 @@
     <Compile Include="Service\DeserializerClasses\MCM_Models.cs" />
     <Compile Include="Service\Helpers\OAuthHeader.cs" />
     <Compile Include="Models\Set.cs" />
+    <Compile Include="Models\Ruling.cs" />
+    <Compile Include="Models\ForeignName.cs" />
+    <Compile Include="Models\Legality.cs" />
+    <Compile Include="Models\PriceData.cs" />
+    <Compile Include="Commands\StartCommand.cs" />
+    <Compile Include="Commands\HelpCommand.cs" />
+    <Compile Include="Commands\CardCommand.cs" />
+    <Compile Include="Commands\PriceCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

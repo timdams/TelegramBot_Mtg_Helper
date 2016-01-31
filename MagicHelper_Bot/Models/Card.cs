@@ -76,42 +76,6 @@ namespace MagicHelper_Bot.Models
 			return str.ToString ();
 		}
 	}
-
-	public class Ruling
-	{
-		public string Date { get; set; }
-
-		public string Text { get; set; }
-
-		public override string ToString ()
-		{
-			return "- " + Text;
-		}
-	}
-
-	public class ForeignName
-	{
-		public string Name { get; set; }
-
-		public string Language { get; set; }
-
-		public int? Multiverseid { get; set; }
-	}
-
-	public class Legality
-	{
-		public string Format { get; set; }
-
-		public string Legal { get; set; }
-
-		public override string ToString ()
-		{
-			if (Legal == null)
-				return Format;
-			return $"{Format}: {Legal}";
-		}
-	}
-
 }
 
 

@@ -25,11 +25,6 @@ namespace MagicHelper_Bot.Service.DeserializerClasses
 	{
 		[DeserializeAs (Name = "1")]
 		public EnglishLangDetails English { get; set; }
-
-		public override string ToString ()
-		{
-			return English != null ? English.ProductName : "???";
-		}
 	}
 
 	public class Category
@@ -37,11 +32,6 @@ namespace MagicHelper_Bot.Service.DeserializerClasses
 		public int IdCategory { get; set; }
 
 		public string CategoryName { get; set; }
-
-		public override string ToString ()
-		{
-			return CategoryName;
-		}
 	}
 
 	public class PriceGuide
@@ -60,7 +50,7 @@ namespace MagicHelper_Bot.Service.DeserializerClasses
 
 		public static explicit operator MagicHelper_Bot.Models.PriceData (PriceGuide p)  // explicit byte to digit conversion operator
 		{
-			MagicHelper_Bot.Models.PriceData result = new MagicHelper_Bot.Models.PriceData () {
+			var result = new MagicHelper_Bot.Models.PriceData {
 				Sold_Avg = p.SELL,
 				Low = p.LOW,
 				Low_HighQuality = p.LOWEX,
@@ -103,12 +93,12 @@ namespace MagicHelper_Bot.Service.DeserializerClasses
 
 		public static explicit operator MagicHelper_Bot.Models.Product (Product p)  // explicit byte to digit conversion operator
 		{
-			MagicHelper_Bot.Models.Product result = new MagicHelper_Bot.Models.Product () {
+			var result = new MagicHelper_Bot.Models.Product {
 
 				ID = p.IdProduct,
 				Link = "https://magiccardmarket.eu" + p.Website,
 				Name = p.Name.English.ProductName,
-				Set = new MagicHelper_Bot.Models.Set (){ Name = p.Expansion },
+				Set = new MagicHelper_Bot.Models.Set{ Name = p.Expansion },
 				Pricing = (MagicHelper_Bot.Models.PriceData)p.PriceGuide,
 				Category = p.Category.CategoryName
 			};
