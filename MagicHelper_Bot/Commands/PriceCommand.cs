@@ -46,7 +46,7 @@ namespace MagicHelper_Bot.Commands
 			}
 
 			if (activeList.Count == 0) {
-				return "Couldn't find that card.";
+				return "Couldn't find that product.";
 			} else if (activeList.Count < 10) {
 				foreach (var product in activeList) {
 					res.AppendLine (product.Name + ":");

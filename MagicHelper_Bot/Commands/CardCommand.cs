@@ -15,14 +15,18 @@ namespace MagicHelper_Bot.Commands
 		{
 			Keyword = "card";
 			Description = @"Searches for a card. Options:
-				-s, -set: define set(s).
-				-c, -color: define color(s).
+				-s, -set: define set(s) by code (GTC, OGW, ...)
+				     Multiple sets split by comma's
+				-c, -color: define color(s) (white, black, ...)
+				     white,black = white AND black.
+				     [white,black] = white OR black OR both.
+				-t, -type: define type(s) (legendary, land, dragon, ...)
 				-p, -page: define the page of results.
-				-l, -legal: get the legality of the card.
-				-r, -rules: get the special rulings of the card.
-				-f, -first: force first result.
-				-t, -text: get the card as text.
-			TIP: a comma is an OR, use quotes to do an absolute search.";
+				-L, -Legal: get the legality of the card.
+				-R, -Rules: get the special rulings of the card.
+				-F, -First: force first result.
+				-T, -Text: get the card as text.";
+			      
 			service = serv;
 		}
 
@@ -34,20 +38,20 @@ namespace MagicHelper_Bot.Commands
 
 			if (results.Count == 0)
 				return "Couldn't find that card.";
-			else if (results.Count == 1 || cmd.Flags.Contains ("f") || cmd.Flags.Contains ("first")) {
+			else if (results.Count == 1 || cmd.Flags.Contains ("F") || cmd.Flags.Contains ("First")) {
 				Card card = results [0];
-				if (card.ImageUrl == null || cmd.Flags.Contains ("t") || cmd.Flags.Contains ("text")) {
+				if (card.ImageUrl == null || cmd.Flags.Contains ("T") || cmd.Flags.Contains ("Text")) {
 					res.AppendLine (card.ToString ());
 				} else {
 					res.AppendLine (card.ImageUrl);
 				}
-				if (cmd.Flags.Contains ("l") || cmd.Flags.Contains ("legal")) {
+				if (cmd.Flags.Contains ("L") || cmd.Flags.Contains ("Legal")) {
 					res.AppendLine ("Legal in:");
 					foreach (var l in card.Legalities) {
 						res.AppendLine (l.ToString ());
 					}
 				}
-				if (cmd.Flags.Contains ("r") || cmd.Flags.Contains ("rules")) {
+				if (cmd.Flags.Contains ("R") || cmd.Flags.Contains ("Rules")) {
 					if (card.Rulings == null)
 						res.AppendLine ("No special rulings.");
 					else {
