@@ -26,6 +26,8 @@ namespace MagicHelper_Bot.Service
 					req.AddParameter ("colors", param.Value);
 				} else if (param.Key.Equals ("t") || param.Key.Equals ("type")) {
 					req.AddParameter ("type", param.Value);
+				} else if (param.Key.Equals ("a") || param.Key.Equals ("ability")) {
+					req.AddParameter ("text", param.Value);
 				}
 			}
 

@@ -20,8 +20,7 @@ namespace MagicHelper_Bot.Commands
 			Description = @"Searches for the price of a product on MagicCardMarket.eu
 				-s, -single: get singles.
 				-b, -booster: get boosters.
-				-d, -display: get display boxes (boosterbox).
-			TIP: a comma is an OR, use quotes to do an absolute search.";
+				-d, -display: get display boxes (boosterbox).";
 		}
 
 		public override string Execute (TextCommand cmd)

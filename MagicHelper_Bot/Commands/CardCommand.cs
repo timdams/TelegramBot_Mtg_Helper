@@ -21,6 +21,7 @@ namespace MagicHelper_Bot.Commands
 				     white,black = white AND black.
 				     [white,black] = white OR black OR both.
 				-t, -type: define type(s) (legendary, land, dragon, ...)
+				-a, -ability: search the card's ability text. (vigilance, extort, ...)
 				-p, -page: define the page of results.
 				-L, -Legal: get the legality of the card.
 				-R, -Rules: get the special rulings of the card.
